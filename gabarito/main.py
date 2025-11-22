@@ -40,7 +40,7 @@ def chat_rag():
     print("Digite 'sair' a qualquer momento para fechar.")
     
     while True:
-        pergunta = input("\n🤖 Digite sua pergunta sobre estruturas condicionais em Python: ")
+        pergunta = input("\n Digite sua pergunta sobre estruturas condicionais em Python: ")
         
         if pergunta.lower() in ['sair', 'exit']:
             print("Encerrando o assistente. Até logo!")
