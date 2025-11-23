@@ -1,24 +1,18 @@
 import os
 from dotenv import load_dotenv
 
-# Imports para Gemini LLM e Embeddings
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 
-# --- 1. CARREGAMENTO DO AMBIENTE (Ajustado para o mesmo nível do script) ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Usando o caminho que funcionou no criar_db.py (no mesmo nível)
 DOTENV_PATH = os.path.join(BASE_DIR, '.env') 
 load_dotenv(dotenv_path=DOTENV_PATH) 
 
-# --- 2. OBTENÇÃO DA CHAVE E VERIFICAÇÃO ---
 API_KEY = os.environ.get("GEMINI_API_KEY")
 
 if not API_KEY:
-    # Se falhar, avisa e encerra
     raise ValueError("ERRO: A chave GEMINI_API_KEY não foi encontrada no ambiente.")
-# ----------------------------------------
 
 CAMINHO_DB = "faiss_md_index"
 
@@ -36,10 +30,8 @@ Resposta:
 """
 prompt = PromptTemplate.from_template(prompt_template_str)
 
-# 1. LLM para a Geração de Resposta (Gemini - Passando a chave explicitamente)
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=API_KEY)
 
-# 2. Embeddings para Carregar o FAISS (Passando a chave explicitamente)
 funcao_embeddings = GoogleGenerativeAIEmbeddings(
     model="text-embedding-004",
     task_type="RETRIEVAL_DOCUMENT",
@@ -47,7 +39,6 @@ funcao_embeddings = GoogleGenerativeAIEmbeddings(
 )
 
 try:
-    # O banco de dados FAISS agora foi criado com embeddings do Gemini
     db = FAISS.load_local(CAMINHO_DB, funcao_embeddings, allow_dangerous_deserialization=True)
 except Exception as e:
     print(f"Erro ao carregar o Banco de Dados FAISS: {e}")
