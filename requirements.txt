@@ -1,0 +1,14 @@
+
+faiss-cpu==1.13.0
+langchain-classic==1.0.0
+langchain-community==0.4.1
+langchain-core==1.0.7
+langchain-google-genai==3.1.0
+langchain-text-splitters==1.0.0
+langdetect==1.0.9
+langsmith==0.4.45
+pypdf==6.4.0
+python-dotenv==1.2.1
+streamlit==1.50.0
+unstructured==0.18.20
+unstructured-client==0.42.4
