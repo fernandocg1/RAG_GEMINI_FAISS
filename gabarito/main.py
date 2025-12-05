@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-# Adicionar importação de os.path para garantir que normpath funcione
 import os.path 
 
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
